@@ -42,7 +42,8 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- MAVEN FRONTEND -->
+        <!-- JPA -->
+
     </dependencies>
 
     <build>
