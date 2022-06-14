@@ -12,3 +12,15 @@
         (it = interactive, rm = kills the container when quitting, h = host, U = user)
 - List running instances: docker ps
 - Stop container: docker stop <id> / <name>
+
+
+# MAVEN
+
+
+# DOCKER & JIB
+
+
+# AWS
+
+
+# SPRING DATA JPA

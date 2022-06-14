@@ -59,13 +59,11 @@ function App() {
         getAllStudents()
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setStudents(data);
                 setFetching(false);
             })
 
     useEffect(() => {
-        console.log("component is mounted");
         fetchStudents();
     }, []);
 
@@ -81,8 +79,8 @@ function App() {
             columns={columns}
             bordered
             title={() => 'Students'}
-            pagination={{ pageSize: 50 }}
-            scroll={{ y: 240 }}
+            pagination={{ pageSize: 10 }}
+            scroll={{ y: 550 }}
             rowKey={(student) => student.id}
         />;
     }
