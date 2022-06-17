@@ -1,10 +1,10 @@
-import {useState, useEffect} from 'react'
-import {getAllStudents} from "./client";
+import {useState, useEffect, Fragment} from 'react'
+import {getAllStudents, deleteStudentById} from "./client";
 import {
     Layout,
     Menu,
     Breadcrumb,
-    Table, Spin, Empty
+    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message
 } from 'antd';
 import {
     DesktopOutlined,
@@ -12,19 +12,58 @@ import {
     FileOutlined,
     TeamOutlined,
     UserOutlined,
-    LoadingOutlined
+    LoadingOutlined, DownloadOutlined, PlusOutlined
 } from '@ant-design/icons';
+import AddStudentBtn from "./AddStudentBtn";
+
 
 import './App.css';
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
-const columns = [
+
+const deleteStudent = (studentId, callback) => {
+    deleteStudentById(studentId).then(() => {
+        message.success('Student Deleted');
+        callback();
+    });
+}
+
+// Alternative way of getting the student id from the HTML element and then delete
+const confirm = (e) => {
+    console.log(e.target.id);
+    const studentId = e.target.id;
+    deleteStudent(studentId);
+    message.success('Student deleted');
+};
+
+const cancel = (e) => {
+    console.log(e.target.name);
+    message.error('Click on No');
+};
+
+const columns = fetchStudents => [
+    {
+      title: '',
+        width: 60,
+      dataIndex: 'avatar',
+      key: 'avatar',
+      render: (text, student) => {
+        if (student.gender === 'MALE') {
+            return <Avatar style={{ backgroundColor: '#308dff' }} icon={<UserOutlined />} />;
+        } else if (student.gender === 'FEMALE') {
+            return <Avatar style={{ backgroundColor: '#e691a3' }} icon={<UserOutlined />} />;
+        } else {
+            return <Avatar style={{ backgroundColor: '#54c46b' }} icon={<UserOutlined />} />;
+        }
+      }
+    },
     {
         title: 'Id',
         dataIndex: 'id',
         key: 'id',
+        width: 80
     },
     {
         title: 'First Name',
@@ -46,6 +85,23 @@ const columns = [
         dataIndex: 'gender',
         key: 'gender',
     },
+    {
+        title: 'Actions',
+        dataIndex: 'actionButtons',
+        key: 'actionButtons',
+        render: (text, student) => {
+            return (<Popconfirm
+                title="Are you sure to delete this student?"
+                //onConfirm={confirm}
+                onConfirm={() => deleteStudent(student.id, fetchStudents)}
+                onCancel={cancel}
+                okText={<p id={student.id}>Yes</p>}
+                cancelText="No"
+            >
+                <a href={student.id}>Delete</a>
+            </Popconfirm>);
+        }
+    }
 ];
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -63,6 +119,7 @@ function App() {
                 setFetching(false);
             })
 
+
     useEffect(() => {
         fetchStudents();
     }, []);
@@ -72,13 +129,19 @@ function App() {
             return <Spin indicator={antIcon} />
         }
         if (students.length <= 0) {
-            return <Empty />;
+            return (
+                <Fragment>
+                    <AddStudentBtn fetchStudents={fetchStudents} />
+                    <Empty />
+                </Fragment>
+            );
         }
         return <Table
+            size="small"
             dataSource={students}
-            columns={columns}
+            columns={columns(fetchStudents)}
             bordered
-            title={() => 'Students'}
+            title={() => <AddStudentBtn fetchStudents={fetchStudents} />}
             pagination={{ pageSize: 10 }}
             scroll={{ y: 550 }}
             rowKey={(student) => student.id}
@@ -98,7 +161,7 @@ function App() {
                 </Menu.Item>
                 <SubMenu key="sub1" icon={<UserOutlined/>} title="User">
                     <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
+                    <Menu.Item key="4">Timo</Menu.Item>
                     <Menu.Item key="5">Alex</Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<TeamOutlined/>} title="Team">
@@ -114,14 +177,14 @@ function App() {
             <Header className="site-layout-background" style={{padding: 0}}/>
             <Content style={{margin: '0 16px'}}>
                 <Breadcrumb style={{margin: '16px 0'}}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                    <Breadcrumb.Item>Students count</Breadcrumb.Item>
+                    <Breadcrumb.Item>{students.length >= 0 ? students.length : <span>0</span>}</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                     {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{textAlign: 'center'}}>By Pekka Solutions</Footer>
+            <Footer style={{textAlign: 'center'}}>By Pekka Solutions ⭐️</Footer>
         </Layout>
     </Layout>
 }

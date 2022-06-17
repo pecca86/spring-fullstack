@@ -13,3 +13,19 @@ const checkStatus = res => {
 export const getAllStudents = () =>
     fetch("api/v1/students")
         .then(checkStatus);
+
+
+export const addNewStudent = (studentData) =>
+    fetch("api/v1/students", {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(studentData)
+    });
+
+export const deleteStudentById = (studentId) =>
+    fetch(`api/v1/students/${studentId}`, {
+        method: 'DELETE',
+    })
+
