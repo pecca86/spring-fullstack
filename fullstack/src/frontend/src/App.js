@@ -18,6 +18,7 @@ import AddStudentBtn from "./AddStudentBtn";
 
 
 import './App.css';
+import {errorNotification} from "./Notification";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -40,7 +41,7 @@ const confirm = (e) => {
 
 const cancel = (e) => {
     console.log(e.target.name);
-    message.error('Click on No');
+    message.error('Aborted');
 };
 
 const columns = fetchStudents => [
@@ -104,7 +105,6 @@ const columns = fetchStudents => [
                 </Popconfirm>
                 <Radio.Button value="small">Edit</Radio.Button>
             </Radio.Group>
-
     }
 ];
 
@@ -121,7 +121,16 @@ function App() {
             .then(data => {
                 setStudents(data);
                 setFetching(false);
-            })
+            }).catch(err => {
+                console.log(err.response);
+                err.response.json().then(res => {
+                    console.log(res);
+                    errorNotification(
+                        "There was an issue",
+                        `${res.message} (${res.error} ${res.status})`
+                    );
+                });
+        }); //.finally(() => setFetching(false))
 
 
     useEffect(() => {

@@ -4,7 +4,6 @@ const checkStatus = res => {
     if (res.ok) {
         return res;
     }
-
     const error = new Error(res.statusText);
     error.response = res;
     return Promise.reject(error);
@@ -22,10 +21,10 @@ export const addNewStudent = (studentData) =>
         },
         method: 'POST',
         body: JSON.stringify(studentData)
-    });
+    }).then(checkStatus);
 
 export const deleteStudentById = (studentId) =>
     fetch(`api/v1/students/${studentId}`, {
         method: 'DELETE',
-    })
+    }).then(checkStatus)
 
