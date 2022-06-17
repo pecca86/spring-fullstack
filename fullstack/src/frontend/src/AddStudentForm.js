@@ -24,6 +24,12 @@ const AddStudentForm = ({onClose, fetchStudents}) => {
                     `${values.firstName} was added!`)
             }).catch(err => {
                 console.log(err);
+                err.response.json().then(res => {
+                    errorNotification(
+                        "Oh noes!",
+                        `${res.message} (${res.error} ${res.status})`
+                    )
+                })
         }).finally(setSubmitting(false));
     };
 

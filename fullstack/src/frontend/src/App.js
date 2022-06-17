@@ -122,9 +122,7 @@ function App() {
                 setStudents(data);
                 setFetching(false);
             }).catch(err => {
-                console.log(err.response);
                 err.response.json().then(res => {
-                    console.log(res);
                     errorNotification(
                         "There was an issue",
                         `${res.message} (${res.error} ${res.status})`

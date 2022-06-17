@@ -22,8 +22,10 @@ public class StudentService {
 
 
     public void addStudent(Student student) {
-        // check if email is taken
-        if (studentRepository.findStudentByEmail(student.getEmail()) != null) {
+        // Sanitize all email to lowercase
+        student.setEmail(student.getEmail().toLowerCase());
+        // Check if given email already exists
+        if (studentRepository.findStudentByEmail(student.getEmail().toLowerCase()) != null) {
             throw new BadRequestException("Email already taken!");
         }
         studentRepository.save(student);
