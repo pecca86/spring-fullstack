@@ -4,7 +4,7 @@ import {
     Layout,
     Menu,
     Breadcrumb,
-    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message
+    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message, Radio
 } from 'antd';
 import {
     DesktopOutlined,
@@ -89,18 +89,22 @@ const columns = fetchStudents => [
         title: 'Actions',
         dataIndex: 'actionButtons',
         key: 'actionButtons',
-        render: (text, student) => {
-            return (<Popconfirm
-                title="Are you sure to delete this student?"
-                //onConfirm={confirm}
-                onConfirm={() => deleteStudent(student.id, fetchStudents)}
-                onCancel={cancel}
-                okText={<p id={student.id}>Yes</p>}
-                cancelText="No"
-            >
-                <a href={student.id}>Delete</a>
-            </Popconfirm>);
-        }
+        render: (text, student) =>
+            <Radio.Group>
+                <Popconfirm
+                    title="Are you sure to delete this student?"
+                    //onConfirm={confirm}
+                    onConfirm={() => deleteStudent(student.id, fetchStudents)}
+                    onCancel={cancel}
+                    okText={<p id={student.id}>Yes</p>}
+                    cancelText="No"
+                >
+                    <Radio.Button>Delete</Radio.Button>
+                    <a href={student.id}>Delete</a>
+                </Popconfirm>
+                <Radio.Button value="small">Edit</Radio.Button>
+            </Radio.Group>
+
     }
 ];
 
