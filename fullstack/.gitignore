@@ -34,4 +34,4 @@ build/
 
 ### Database folder ###
 ../db-data
-.db-data
+./db-data

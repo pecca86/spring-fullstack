@@ -4,6 +4,9 @@ package com.example.fullstack.student;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @ToString
 @Getter
@@ -12,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table
+@Table(name = "student", uniqueConstraints = @UniqueConstraint(name = "student_email_unique", columnNames = "email"))
 public class Student {
 
     @Id
@@ -26,12 +29,17 @@ public class Student {
             allocationSize = 1
     )
     private Long id;
-    @Column(name = "first_name")
+    @NotBlank(message = "First name cannot be blank!")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @NotBlank(message = "Last name cannot be blank!")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "email")
+    @Email(message = "Invalid email format!")
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
+
+    @NotNull(message = "Must choose a gender!")
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
