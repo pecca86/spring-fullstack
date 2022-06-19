@@ -9,6 +9,7 @@ class FullstackApplicationTests {
 
     @Test
     void contextLoads() {
+        // Make a failing test to check dev pipeline
         Assertions.fail("Test failed");
     }
 
