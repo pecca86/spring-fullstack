@@ -14,13 +14,35 @@
 - Stop container: docker stop <id> / <name>
 
 
-# MAVEN
+# MAVEN & JIB (Pushing Docker images)
+- ./mvnw clean install -P build-frontend -P jib-push-to-dockerhub -Dapp.image.tag=ver2
 
 
-# DOCKER & JIB
+# DOCKER
 
 
 # AWS
+- Configure a docker-compose.yml file for elastic beanstalk inside project structure
+- Go into AWS Elastic beanstalk and upload docker-compose file
+- Configure Elastic Beanstalk DB:
+    * Console -> Configuration -> Database -> Edit
+- Configure Security Groups for DB access
+    * AWS Console -> RDS -> DB instances -> Connectivity & security -> VPC Security Groups
+    * Modify inbound / outbound rules
+        - INBOUND RULES:
+            * Source = Security Group name
+            * Add rule:
+                - Type: PostgreSQL, Source: MyIP
+- Connect to database through docker:
+    docker run -it --rm --network=db postgres:alpine psql -h <AWS_URI> -U pecca86 -d postgres
+    (h = host, d = database)
+- Deploy new Docker image to Elastic beanstalk
 
 
 # SPRING DATA JPA
+
+# CD / CI PIPELINE
+- Github -> Github actions -> workflow -> 1. pull request (inner checks); ok to merge -> 2. merge to main, business logic (notification etc.), automation pipeline -> 
+    ## GitHub Actions
+    - create .github/workflows/build.yml && deploy.yml folder in code repo
+    - 
