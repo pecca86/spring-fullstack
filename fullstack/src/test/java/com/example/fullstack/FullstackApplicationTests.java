@@ -1,8 +1,10 @@
 package com.example.fullstack;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+
 
 @SpringBootTest
 class FullstackApplicationTests {
@@ -12,6 +14,6 @@ class FullstackApplicationTests {
 
         System.out.println("Some text to make changes...");
         // Make a failing test to check dev pipeline
-        Assertions.fail("Test failed");
+        Assertions.fail("FAILING TEST ON PURPOSE");
     }
 }
