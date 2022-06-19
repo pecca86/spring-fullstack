@@ -46,6 +46,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Maven Clean Package
         run: |
-
+         cd fullstack/src/frontend && npm install
          cd fullstack && ./mvnw --no-transfer-progress clean package -P build-frontend
 
