@@ -46,3 +46,7 @@
     ## GitHub Actions
     - create .github/workflows/build.yml && deploy.yml folder in code repo
     - 
+    # AWS
+    - Security Credentials -> User groups -> Create Group (Admin)
+    -                      -> Users -> create User [enable programmatic acces]
+                           -> Add new Secrets to github repository
