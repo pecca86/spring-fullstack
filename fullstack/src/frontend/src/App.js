@@ -4,7 +4,7 @@ import {
     Layout,
     Menu,
     Breadcrumb,
-    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message, Radio
+    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message, Radio, Divider
 } from 'antd';
 import {
     DesktopOutlined,
@@ -190,7 +190,12 @@ function App() {
                     {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{textAlign: 'center'}}>By Pekka Solutions ⭐️</Footer>
+            <Footer style={{textAlign: 'center'}}>
+                By Pekka Solutions ⭐
+                <Divider>
+                    <a href="#">Link schmink</a>
+                </Divider>
+                ️</Footer>
         </Layout>
     </Layout>
 }
