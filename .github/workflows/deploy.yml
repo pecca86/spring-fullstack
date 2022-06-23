@@ -61,7 +61,7 @@ jobs:
 
       - name: Maven Clean Package and Push to Dockerhub
         run: |
-        cd fullstack
+          cd fullstack
           ./mvnw --no-transfer-progress clean package \
             -P build-frontend \
             -P jib-push-to-dockerhub \
