@@ -193,7 +193,7 @@ function App() {
             <Footer style={{textAlign: 'center'}}>
                 By Pekka Solutions ⭐
                 <Divider>
-                    <a href="#">Link schmink pink fink?</a>
+                    <a href="#">Link schmink pink finkeldahl?</a>
                 </Divider>
                 ️</Footer>
         </Layout>
