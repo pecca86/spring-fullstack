@@ -1,4 +1,4 @@
-name: CICDNEW
+name: CICD
 
 on:
   push:
