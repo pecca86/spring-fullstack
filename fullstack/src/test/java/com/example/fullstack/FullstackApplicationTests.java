@@ -14,6 +14,6 @@ class FullstackApplicationTests {
 
         System.out.println("Some text to make changes...");
         // Make a failing test to check dev pipeline
-        Assertions.fail("FAILING TEST ON PURPOSE");
+//        Assertions.fail("FAILING TEST ON PURPOSE");
     }
 }
