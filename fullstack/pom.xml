@@ -238,7 +238,7 @@
                         <configuration>
                             <nodeVersion>v4.6.0</nodeVersion>
                             <!-- cd src/frontend -->
-                            <workingDirectory>src/frontend</workingDirectory>
+                            <workingDirectory>fullstack/src/frontend</workingDirectory>
                         </configuration>
                         <executions>
                             <execution>
@@ -251,25 +251,25 @@
                                     <npmVersion>8.12.1</npmVersion>
                                 </configuration>
                             </execution>
-<!--                            <execution>-->
-<!--                                <id>npm install</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <arguments>install</arguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                            <execution>-->
-<!--                                &lt;!&ndash; in command line: npm run build &ndash;&gt;-->
-<!--                                <id>npm run build</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <arguments>run build</arguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <!-- in command line: npm run build -->
+                                <id>npm run build</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run build</arguments>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
 
