@@ -4,15 +4,14 @@ import {
     Layout,
     Menu,
     Breadcrumb,
-    Table, Spin, Empty, Button, notification, Avatar, Popconfirm, message, Radio, Divider
+    Table, Spin, Empty, Avatar, Popconfirm, message, Radio, Divider
 } from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
     FileOutlined,
-    TeamOutlined,
     UserOutlined,
-    LoadingOutlined, DownloadOutlined, PlusOutlined
+    LoadingOutlined
 } from '@ant-design/icons';
 import AddStudentBtn from "./AddStudentBtn";
 
@@ -32,12 +31,12 @@ const deleteStudent = (studentId, callback) => {
 }
 
 // Alternative way of getting the student id from the HTML element and then delete
-const confirm = (e) => {
-    console.log(e.target.id);
-    const studentId = e.target.id;
-    deleteStudent(studentId);
-    message.success('Student deleted');
-};
+// const confirm = (e) => {
+//     console.log(e.target.id);
+//     const studentId = e.target.id;
+//     deleteStudent(studentId);
+//     message.success('Student deleted');
+// };
 
 const cancel = (e) => {
     console.log(e.target.name);

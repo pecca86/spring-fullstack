@@ -1,7 +1,6 @@
-import {Button, Checkbox, Form, Input, Row, Select, Spin} from 'antd';
+import {Button, Form, Input, Select, Spin} from 'antd';
 import {Option} from "antd/es/mentions";
 import {addNewStudent} from "./client";
-import {useEffect, useState} from "react";
 import {successNotification, errorNotification} from "./Notification";
 
 const AddStudentForm = ({onClose, fetchStudents}) => {
