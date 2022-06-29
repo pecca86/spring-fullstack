@@ -238,7 +238,7 @@
                         <configuration>
                             <nodeVersion>v4.6.0</nodeVersion>
                             <!-- cd src/frontend -->
-                            <workingDirectory>./fullstack/src/frontend</workingDirectory>
+                            <workingDirectory>./src/frontend</workingDirectory>
                         </configuration>
                         <executions>
                             <execution>
