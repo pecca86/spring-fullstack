@@ -4,20 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>x
-        <version>2.7.0</version>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>fullstack</artifactId>
+    <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fullstack</name>
-    <description>fullstack</description>
+    <name>demo</name>
+    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
-        <!-- for dockerizing -->
         <app.image.name>springboot-react-fullstack</app.image.name>
-        <app.image.tag />
+        <app.image.tag/>
     </properties>
     <dependencies>
         <dependency>
@@ -25,12 +24,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -42,13 +35,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- PSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -60,7 +51,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -77,32 +67,24 @@
                     </excludes>
                 </configuration>
             </plugin>
-
-            <!-- JIB for docker containers -->
-            <!-- from cmd run: ./mvnw jib:dockerBuild -Djib.to.image=<image_name>:<version> -->
-            <!-- ./mvnw clean install -P build-frontend -P jib-push-to-dockerhub -Dapp.image.tag=1 -->
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.1.4</version>
+                <version>2.5.2</version>
                 <configuration>
-                    <!-- base image -->
                     <from>
                         <image>openjdk:17</image>
                     </from>
-                    <!-- container props -->
                     <container>
                         <ports>
                             <port>8080</port>
                         </ports>
-                        <!-- Open Container Initiative -->
                         <format>OCI</format>
                     </container>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>jib-push-to-dockerhub</id>
@@ -111,26 +93,21 @@
             </activation>
             <build>
                 <plugins>
-                    <!-- automatically push to docker hub -->
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.1.4</version>
+                        <version>2.5.2</version>
                         <configuration>
-                            <!-- base image -->
                             <from>
                                 <image>openjdk:17</image>
                             </from>
-                            <!-- container props -->
                             <container>
                                 <ports>
                                     <port>8080</port>
                                 </ports>
-                                <!-- Open Container Initiative -->
                                 <format>OCI</format>
                             </container>
                         </configuration>
-                        <!-- for pushing images with different tags -->
                         <executions>
                             <execution>
                                 <id>push-custom-tag</id>
@@ -161,8 +138,6 @@
                 </plugins>
             </build>
         </profile>
-
-        <!-- push to local -->
         <profile>
             <id>jib-push-to-local</id>
             <activation>
@@ -170,26 +145,21 @@
             </activation>
             <build>
                 <plugins>
-                    <!-- automatically push to docker hub -->
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.1.4</version>
+                        <version>2.5.2</version>
                         <configuration>
-                            <!-- base image -->
                             <from>
-                                <image>openjdk:17</image>
+                                <image>openjdk:15</image>
                             </from>
-                            <!-- container props -->
                             <container>
                                 <ports>
                                     <port>8080</port>
                                 </ports>
-                                <!-- Open Container Initiative -->
                                 <format>OCI</format>
                             </container>
                         </configuration>
-                        <!-- for pushing images with different tags -->
                         <executions>
                             <execution>
                                 <id>push-custom-tag</id>
@@ -220,72 +190,63 @@
                 </plugins>
             </build>
         </profile>
-
         <profile>
-            <!-- places the build ver. of react into main/resources/static -->
             <id>build-frontend</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <build>
                 <plugins>
-<!--                    <plugin>-->
-<!--                        <groupId>com.github.eirslett</groupId>-->
-<!--                        <artifactId>frontend-maven-plugin</artifactId>-->
-<!--                        &lt;!&ndash; Use the latest released version:-->
-<!--                                  https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ &ndash;&gt;-->
-<!--                        <version>1.11.2</version>-->
-<!--                        <configuration>-->
-<!--                            <nodeVersion>v4.6.0</nodeVersion>-->
-<!--                            &lt;!&ndash; cd src/frontend &ndash;&gt;-->
-<!--                            <workingDirectory>src/frontend</workingDirectory>-->
-<!--                        </configuration>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>install node and npm</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>install-node-and-npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <nodeVersion>v16.13.0</nodeVersion>-->
-<!--                                    <npmVersion>8.12.1</npmVersion>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                            <execution>-->
-<!--                                <id>npm install</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <arguments>install</arguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                            <execution>-->
-<!--                                &lt;!&ndash; in command line: npm run build &ndash;&gt;-->
-<!--                                <id>npm run build</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <arguments>run build</arguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-
-                    <!-- Copies the react build folder into our resources/static folder -->
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <!-- Use the latest released version:
+                        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+                        <version>1.11.2</version>
+                        <configuration>
+                            <nodeVersion>v4.6.0</nodeVersion>
+                            <workingDirectory>src/frontend</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v15.4.0</nodeVersion>
+                                    <npmVersion>7.3.0</npmVersion>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm run build</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run build</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
                         <executions>
                             <execution>
                                 <id>copy-build-folder</id>
-                                <!-- when we get to this phase of the build -->
                                 <phase>process-classes</phase>
-                                <!-- copy resources -->
                                 <goals>
                                     <goal>copy-resources</goal>
                                 </goals>
-                                <!-- Configuration specifies what we want to copy into where -->
                                 <configuration>
                                     <resources>
                                         <resource>
@@ -302,5 +263,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>
