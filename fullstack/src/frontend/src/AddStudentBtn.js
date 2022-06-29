@@ -1,5 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Drawer, Select, Space } from 'antd';
+import { Button, Drawer, Space } from 'antd';
 import { useState } from 'react';
 import AddStudentForm from "./AddStudentForm";
 
