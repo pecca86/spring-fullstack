@@ -17,6 +17,7 @@ class FullstackApplicationTests {
         System.out.println("Added adding-text");
         System.out.println("Added adding-text");
         System.out.println("Added adding-text");
+        System.out.println("Added adding-text");
         // Make a failing test to check dev pipeline
 //        Assertions.fail("FAILING TEST ON PURPOSE");
     }
