@@ -238,19 +238,19 @@
                         <configuration>
                             <nodeVersion>v4.6.0</nodeVersion>
                             <!-- cd src/frontend -->
-                            <workingDirectory>./src/frontend</workingDirectory>
+                            <workingDirectory>src/frontend</workingDirectory>
                         </configuration>
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>install node and npm</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>install-node-and-npm</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <nodeVersion>v16.13.0</nodeVersion>-->
-<!--                                    <npmVersion>8.12.1</npmVersion>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v16.13.0</nodeVersion>
+                                    <npmVersion>8.12.1</npmVersion>
+                                </configuration>
+                            </execution>
 <!--                            <execution>-->
 <!--                                <id>npm install</id>-->
 <!--                                <goals>-->
@@ -270,7 +270,7 @@
 <!--                                    <arguments>run build</arguments>-->
 <!--                                </configuration>-->
 <!--                            </execution>-->
-<!--                        </executions>-->
+                        </executions>
                     </plugin>
 
                     <!-- Copies the react build folder into our resources/static folder -->
