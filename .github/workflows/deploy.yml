@@ -76,7 +76,6 @@ jobs:
       - name: Update and commit app version in docker-compose.yml
         run: |
           BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
-          pwd
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
           sed -i -E 's_(pecca86/springboot-react-fullstack:)([^"]*)_\1'${BUILD_NUMBER}'_' fullstack/elasticbeanstalk/docker-compose.yml
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
