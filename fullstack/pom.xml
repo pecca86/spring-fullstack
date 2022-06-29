@@ -252,6 +252,15 @@
                                 </configuration>
                             </execution>
                             <execution>
+                                <id>change dir</id>
+                                <goals>
+                                    <goal>cd</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>..</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
                                 <id>npm install</id>
                                 <goals>
                                     <goal>npm</goal>
