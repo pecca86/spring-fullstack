@@ -229,18 +229,18 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- Use the latest released version:
-                                  https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                        <version>1.11.2</version>
-                        <configuration>
-                            <nodeVersion>v4.6.0</nodeVersion>
-                            <!-- cd src/frontend -->
-                            <workingDirectory>src/frontend</workingDirectory>
-                        </configuration>
-                        <executions>
+<!--                    <plugin>-->
+<!--                        <groupId>com.github.eirslett</groupId>-->
+<!--                        <artifactId>frontend-maven-plugin</artifactId>-->
+<!--                        &lt;!&ndash; Use the latest released version:-->
+<!--                                  https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ &ndash;&gt;-->
+<!--                        <version>1.11.2</version>-->
+<!--                        <configuration>-->
+<!--                            <nodeVersion>v4.6.0</nodeVersion>-->
+<!--                            &lt;!&ndash; cd src/frontend &ndash;&gt;-->
+<!--                            <workingDirectory>src/frontend</workingDirectory>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
 <!--                            <execution>-->
 <!--                                <id>install node and npm</id>-->
 <!--                                <goals>-->
@@ -270,8 +270,8 @@
 <!--                                    <arguments>run build</arguments>-->
 <!--                                </configuration>-->
 <!--                            </execution>-->
-                        </executions>
-                    </plugin>
+<!--                        </executions>-->
+<!--                    </plugin>-->
 
                     <!-- Copies the react build folder into our resources/static folder -->
                     <plugin>
