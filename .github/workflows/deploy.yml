@@ -76,7 +76,7 @@ jobs:
           BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
           pwd
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
-          sed -i -E 's_(pecca86/springboot-react-fullstack:)([^"]*)_\1'latest'_' fullstack/elasticbeanstalk/docker-compose.yml
+          sed -i -E 's_(pecca86/springboot-react-fullstack:)([^"]*)_\1'${BUILD_NUMBER}'_' fullstack/elasticbeanstalk/docker-compose.yml
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
           git config user.name github-actions
           git config user.email github-actions@github.com
