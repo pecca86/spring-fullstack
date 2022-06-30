@@ -67,6 +67,7 @@ jobs:
           npm run build
           cd ../../..
           cd fullstack
+          cp -a src/frontend/build/ src/main/resources/static
           ./mvnw --no-transfer-progress clean package \
             -P build-frontend \
             -P jib-push-to-dockerhub \
