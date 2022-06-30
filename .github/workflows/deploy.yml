@@ -68,10 +68,10 @@ jobs:
           cd ../../..
           cd fullstack
           cp -a src/frontend/build/ src/main/resources/static
-          ./mvnw --no-transfer-progress clean package \
-            -P build-frontend \
-            -P jib-push-to-dockerhub \
-              -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
+          ./mvnw --no-transfer-progress clean package
+          cp -a src/frontend/build/ target/classes/static
+          ./mvnw --no-transfer-progress -P build-frontend
+          ./mvnw --no-transfer-progress -P jib-push-to-dockerhub -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
       - uses: fateyan/action-discord-notifier@v1
         with:
           message-title: ${{ job.status }}
@@ -88,7 +88,6 @@ jobs:
           git add fullstack/elasticbeanstalk/docker-compose.yml
           git commit -m "new app version: ${BUILD_NUMBER}"
           git push
-
       - uses: fateyan/action-discord-notifier@v1
         with:
           message-title: ${{ job.status }}
