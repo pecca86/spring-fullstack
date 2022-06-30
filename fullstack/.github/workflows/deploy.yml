@@ -62,6 +62,7 @@ jobs:
       - name: Maven Clean Package and Push to Dockerhub
         run: |
           cd fullstack/src/frontend && npm install
+          rm -rf build
           npm run build
           cd ../../..
           cd fullstack
@@ -77,7 +78,6 @@ jobs:
       - name: Update and commit app version in docker-compose.yml
         run: |
           BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
-          pwd
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
           sed -i -E 's_(pecca86/springboot-react-fullstack:)([^"]*)_\1'${BUILD_NUMBER}'_' fullstack/elasticbeanstalk/docker-compose.yml
           echo -e "Current fullstack/elasticbeanstalk/docker-compose.yml\n$(cat fullstack/elasticbeanstalk/docker-compose.yml)"
@@ -86,7 +86,6 @@ jobs:
           git add fullstack/elasticbeanstalk/docker-compose.yml
           git commit -m "new app version: ${BUILD_NUMBER}"
           git push
-
       - uses: fateyan/action-discord-notifier@v1
         with:
           message-title: ${{ job.status }}
