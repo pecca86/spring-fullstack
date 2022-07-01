@@ -68,7 +68,6 @@ jobs:
           cd ../../..
           cd fullstack
           cp -a src/frontend/build/ src/main/resources/static
-          ls src/main/resources/static
           ./mvnw --no-transfer-progress clean package
           cp -a src/frontend/build/ target/classes/static
           ./mvnw --no-transfer-progress verify -P build-frontend
