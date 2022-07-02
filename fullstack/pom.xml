@@ -254,7 +254,7 @@
                                             <directory>src/frontend/build</directory>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${basedir}/src/main/resources/static</outputDirectory>
+                                    <outputDirectory>src/main/resources/static</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
