@@ -254,7 +254,7 @@
                                             <directory>src/frontend/build</directory>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>src/main/resources/static</outputDirectory>
+                                    <outputDirectory>${basedir}/fullstack/target/classes/static</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
