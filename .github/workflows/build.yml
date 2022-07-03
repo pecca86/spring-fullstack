@@ -48,6 +48,8 @@ jobs:
         run: |
          cd fullstack/src/frontend && npm install
          cd ../../..
-         cd fullstack && ./mvnw --no-transfer-progress clean package -P build-frontend
+         cd fullstack
+         cp -a src/frontend/build/ src/main/resources/static
+         cd fullstack && ./mvnw --no-transfer-progress clean package
          cd ..
 
