@@ -64,10 +64,10 @@ jobs:
           cd fullstack/src/frontend
           npm install
           npm run build
-          cd ../..
+          cd ../../..
+          cd fullstack
           cp -a src/frontend/build/ src/main/resources/static
           ./mvnw --no-transfer-progress clean package 
-          cp -a src/frontend/build/ src/target/classes/static
           ./mvnw --no-transfer-progress package -P jib-push-to-dockerhub -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
       - uses: fateyan/action-discord-notifier@v1
         with:
