@@ -29,9 +29,17 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- includes Junit5, Mockito and AssertJ among other things -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- H2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
 
