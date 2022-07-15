@@ -1,36 +1,51 @@
 import {Button, Form, Input, Select, Spin} from 'antd';
 import {Option} from "antd/es/mentions";
-import {addNewStudent} from "./client";
+import {addNewStudent, updateStudent} from "./client";
 import {successNotification, errorNotification} from "./Notification";
 import {useState} from "react";
 
-const AddStudentForm = ({onClose, fetchStudents}) => {
+const AddStudentForm = ({onClose, fetchStudents, currentStudent}) => {
 
     const [submitting, setSubmitting] = useState(false);
+    const [student, setStudent] = useState({});
+
 
 
     const onFinish = (values) => {
-        console.log('Success:', values);
-        //setSubmitting(true);
+
         setSubmitting(true);
-        console.log(submitting)
-        addNewStudent(values)
-            .then(() => {
-                console.log("Student added");
-                onClose();
-                fetchStudents();
-                successNotification(
-                    "Student added",
-                    `${values.firstName} was added!`)
-            }).catch(err => {
-                console.log(err);
-                err.response.json().then(res => {
-                    errorNotification(
-                        "Oh noes!",
-                        `${res.message} (${res.error} ${res.status})`
-                    )
-                })
-        }).finally(setSubmitting(false));
+        { currentStudent ?
+            (
+                updateStudent(values, currentStudent.id)
+                    .then(() => {
+                        onClose();
+                        fetchStudents();
+                        successNotification(
+                            "Student updated",
+                            "Updated successfully")
+                    }).finally(setSubmitting(false))
+            )
+             :
+            (
+                addNewStudent(values)
+                    .then(() => {
+                        console.log("Student added");
+                        onClose();
+                        fetchStudents();
+                        successNotification(
+                            "Student added",
+                            `${values.firstName} was added!`)
+                    }).catch(err => {
+                    console.log(err);
+                    err.response.json().then(res => {
+                        errorNotification(
+                            "Oh noes!",
+                            `${res.message} (${res.error} ${res.status})`
+                        )
+                    })
+                }).finally(setSubmitting(false))
+            );
+        };
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -63,7 +78,8 @@ const AddStudentForm = ({onClose, fetchStudents}) => {
                     },
                 ]}
             >
-                <Input />
+                {currentStudent ? <Input defaultValue={currentStudent.firstName}/> : <Input />}
+
             </Form.Item>
 
             <Form.Item
@@ -76,7 +92,8 @@ const AddStudentForm = ({onClose, fetchStudents}) => {
                     },
                 ]}
             >
-                <Input />
+                {currentStudent ? <Input defaultValue={currentStudent.lastName}/> : <Input />}
+
             </Form.Item>
 
             <Form.Item
@@ -89,7 +106,8 @@ const AddStudentForm = ({onClose, fetchStudents}) => {
                     },
                 ]}
             >
-                <Input />
+                {currentStudent ? <Input defaultValue={currentStudent.email}/> : <Input />}
+
             </Form.Item>
 
             <Form.Item

@@ -23,8 +23,20 @@ export const addNewStudent = (studentData) =>
         body: JSON.stringify(studentData)
     }).then(checkStatus);
 
+
 export const deleteStudentById = (studentId) =>
     fetch(`api/v1/students/${studentId}`, {
         method: 'DELETE',
     }).then(checkStatus)
+
+
+export const updateStudent = (studentData, studentId) =>
+    fetch(`api/v1/students/${studentId}`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT',
+        body: JSON.stringify(studentData)
+    }).then(checkStatus);
+
 

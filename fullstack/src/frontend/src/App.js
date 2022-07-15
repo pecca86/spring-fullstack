@@ -102,7 +102,7 @@ const columns = fetchStudents => [
                     <Radio.Button>Delete</Radio.Button>
                     <a href={student.id}>Delete</a>
                 </Popconfirm>
-                <Radio.Button value="small">Edit</Radio.Button>
+                <Radio.Button value="small" ><AddStudentBtn buttonText="Edit" clickedStudent={student}/></Radio.Button>
             </Radio.Group>
     }
 ];
@@ -151,7 +151,7 @@ function App() {
             dataSource={students}
             columns={columns(fetchStudents)}
             bordered
-            title={() => <AddStudentBtn fetchStudents={fetchStudents} />}
+            title={() => <AddStudentBtn fetchStudents={fetchStudents} buttonText="Add new student" />}
             pagination={{ pageSize: 10 }}
             scroll={{ y: 550 }}
             rowKey={(student) => student.id}

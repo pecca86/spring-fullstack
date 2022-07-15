@@ -39,5 +39,15 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public void updateStudent(Student student, Long id) {
+        Student updatedStudent = studentRepository.getStudentById(id);
+        updatedStudent.setFirstName(student.getFirstName());
+        updatedStudent.setLastName(student.getLastName());
+        updatedStudent.setEmail(student.getEmail());
+        updatedStudent.setGender(student.getGender());
+
+        studentRepository.save(updatedStudent);
+    }
+
 
 }
