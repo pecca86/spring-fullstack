@@ -7,7 +7,6 @@ import {useState} from "react";
 const AddStudentForm = ({onClose, fetchStudents, currentStudent}) => {
 
     const [submitting, setSubmitting] = useState(false);
-    const [student, setStudent] = useState({});
 
 
 
@@ -44,7 +43,7 @@ const AddStudentForm = ({onClose, fetchStudents, currentStudent}) => {
                         )
                     })
                 }).finally(setSubmitting(false))
-            );
+            )
         };
     };
 
